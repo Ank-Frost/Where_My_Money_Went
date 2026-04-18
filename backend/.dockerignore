@@ -1,0 +1,10 @@
+node_modules
+npm-debug.log
+.env
+.git
+.gitignore
+backend.log
+mysql_server.log
+mysql_init.log
+test-db.js
+test-db-new.js

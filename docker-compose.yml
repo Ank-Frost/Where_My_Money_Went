@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: money_tracker
+    # The schema.sql will automatically run when the db starts fresh
+    volumes:
+      - ./backend/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+  backend:
+    build: ./backend
+    environment:
+      PORT: 5000
+      NODE_ENV: production
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: money_tracker
+      # Using hardcoded secrets for simplicity in this portable setup,
+      # but you can override them using a .env file.
+      JWT_SECRET: 8f9e2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v3w4x5y6z
+      JWT_EXPIRES_IN: 7d
+      VAPID_PUBLIC_KEY: BLrgSO3EQxueJ4cLF5X4hjDtD2aGhUKyzfkBhpoKbz2fLhZk3h4zJtiSGX5XF5jJfFpd1gAHBcKxJp2WuyjHfaU
+      VAPID_PRIVATE_KEY: yrqv1uX4E0Iz1CNVZPUcM_7z9Gm2lOjv7Gs80GzuhHY
+      VAPID_EMAIL: mailto:admin@example.com
+      # In this docker setup, the frontend Nginx will proxy requests
+      FRONTEND_URL: http://localhost:5173
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend

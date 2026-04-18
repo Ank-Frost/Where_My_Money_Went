@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: #0f0f0f;
+    color: #f0f0f0;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #161616; }
+  ::-webkit-scrollbar-thumb { background: #3a3a3a; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #4a4a4a; }
+}
+
+@layer components {
+  .card {
+    @apply bg-dark-700 rounded-xl border border-dark-500 p-4;
+  }
+  .btn-primary {
+    @apply bg-brand-blue hover:bg-blue-500 text-white font-medium px-4 py-2 rounded-lg transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply bg-dark-600 hover:bg-dark-500 text-white font-medium px-4 py-2 rounded-lg transition-colors duration-150 border border-dark-400;
+  }
+  .btn-danger {
+    @apply bg-red-600 hover:bg-red-700 text-white font-medium px-4 py-2 rounded-lg transition-colors duration-150;
+  }
+  .btn-success {
+    @apply bg-brand-green hover:bg-green-500 text-white font-medium px-4 py-2 rounded-lg transition-colors duration-150;
+  }
+  .input {
+    @apply bg-dark-600 border border-dark-400 rounded-lg px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors w-full;
+  }
+  .select {
+    @apply bg-dark-600 border border-dark-400 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors w-full cursor-pointer;
+  }
+  .label {
+    @apply text-sm font-medium text-gray-400 mb-1 block;
+  }
+  .income-text { @apply text-brand-blue; }
+  .expense-text { @apply text-brand-red; }
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+}
