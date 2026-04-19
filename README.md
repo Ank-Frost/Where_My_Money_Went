@@ -194,22 +194,6 @@ where-my-money-went/
 | Budget setup reminder | 1st of each month (if no budget set) |
 | Subscription reminder | 5 days before, 3 days before, 1 day before, day of |
 
----
-
-## Building for Production
-
-```bash
-# Frontend
-cd frontend
-npm run build
-# Output: frontend/dist/
-
-# Backend
-cd backend
-NODE_ENV=production npm start
-```
-
-Serve `frontend/dist/` with nginx or any static server, and point API requests to the backend port.
 
 ---
 
